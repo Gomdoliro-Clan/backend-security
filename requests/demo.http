@@ -1,0 +1,47 @@
+@base = http://127.0.0.1:18080
+@token = paste-accessToken-here
+
+### 상태 확인
+GET {{base}}/api/health
+
+### 분석 담당 로그인
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"email":"analyst@hanul.example","password":"Analyst-lab-2026!"}
+
+### 현재 사용자
+GET {{base}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### 거래처 목록
+GET {{base}}/api/suppliers
+Authorization: Bearer {{token}}
+
+### 거래처 등록
+POST {{base}}/api/suppliers
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"name":"온유 사무용품","contactEmail":"sales@example.test","category":"OFFICE"}
+
+### 청구서 조회
+GET {{base}}/api/invoices
+Authorization: Bearer {{token}}
+
+### 보고서 저장
+POST {{base}}/api/reports
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{"name":"부서별 합계","dimension":"department"}
+
+### 공개 공고
+GET {{base}}/api/portal/rfqs
+
+### 견적 접수
+POST {{base}}/api/portal/rfqs/hanul-office-2026/quotes
+Content-Type: application/json
+
+{"supplierName":"온유 사무용품","contactEmail":"sales@example.test","total":180000,"preferences":{"locale":"ko-KR"}}
+
